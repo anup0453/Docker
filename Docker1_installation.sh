@@ -6,4 +6,6 @@ sudo apt install docker.io -y
 
 sudo snap install docker
 
+sudo dpkg --configure -a
+
 docker --version
