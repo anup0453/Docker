@@ -1,0 +1,5 @@
+FROM tomcat:8.0
+
+MAINTAINER anup dubey <anup0453@gmail.com>
+
+CMD ["catalina.sh","run"]
