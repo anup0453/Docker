@@ -1,0 +1,36 @@
+# Use the Amazon Linux base image
+FROM amazonlinux:latest
+
+# Set non-interactive mode
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Update package lists and install basic utilities
+RUN yum install -y \
+    nano \
+    vim \
+    curl --allowerasing \
+    wget \
+    unzip \
+    tar \
+    gzip \
+    bzip2 \
+    git \
+    jq \
+    bind-utils \
+    iputils \
+    net-tools \
+    telnet \
+    ca-certificates \
+    && yum clean all
+
+# Install AWS CLI
+RUN curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    rm -rf awscliv2.zip ./aws
+
+# Set a working directory
+WORKDIR /app
+
+# Define a command to run when the container starts
+CMD ["bash"]
